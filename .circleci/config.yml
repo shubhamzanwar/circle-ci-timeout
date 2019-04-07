@@ -36,7 +36,7 @@ jobs:
           name: 'Save a file with new content'
           command: echo "true" > approval
       - save_cache:
-          key: approval-file
+          key: approval-file-{{epoch}}
           paths:
               - ~/user-ms/approval
   wait:
@@ -50,8 +50,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-              - approval-file
-
+              - approval-file-
       - run:
           name: 'list files'
           command: ls
