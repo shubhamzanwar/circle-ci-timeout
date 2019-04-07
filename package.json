@@ -1,0 +1,26 @@
+{
+  "name": "circle-ci-timeout",
+  "version": "1.0.0",
+  "description": "Experimenting with timeouts for manual approval in circleCI 2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhamzanwar/circle-ci-timeout.git"
+  },
+  "keywords": [
+    "node",
+    "circleci"
+  ],
+  "author": "Shubham Zanwar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubhamzanwar/circle-ci-timeout/issues"
+  },
+  "homepage": "https://github.com/shubhamzanwar/circle-ci-timeout#readme",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
