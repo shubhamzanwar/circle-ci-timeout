@@ -1,4 +1,4 @@
-temp=$(<boom)
+temp=$(<approval)
 if [[ $temp = "true" ]]
 then
 	echo approved

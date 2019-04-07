@@ -26,9 +26,8 @@ jobs:
           root: ~/user-ms
           paths:
             - .
-  hold:
+  approve:
     <<: *dockerImageAndWorkDir
-    type: approval
     steps:
       - attach_workspace:
           at: ~/user-ms
@@ -77,9 +76,13 @@ workflows:
           requires: 
               - install-dependencies
       - hold:
+          type: approval
           requires: 
               - install-dependencies
+      - approve:
+          requires:
+              - hold
       - test-and-lint:
           requires:
               - wait
-              - hold
+              - approve
