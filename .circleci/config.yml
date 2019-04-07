@@ -23,6 +23,12 @@ jobs:
           root: ~/user-ms
           paths:
             - .
+  pass:
+    <<: *dockerImageAndWorkDir
+    steps:
+      - run:
+          name: 'Simply pass'
+          command: echo $CIRCLE_BUILD_NUM
   wait:
     <<: *dockerImageAndWorkDir
     steps:
@@ -53,6 +59,10 @@ workflows:
       - wait:
           requires: 
               - install-dependencies
+      - pass:
+          requires: 
+              - install-dependencies
       - test-and-lint:
           requires:
               - wait
+              - pass
