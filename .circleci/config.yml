@@ -27,8 +27,8 @@ jobs:
     <<: *dockerImageAndWorkDir
     steps:
       - run:
-          name: 'Simply pass'
-          command: echo $CIRCLE_BUILD_NUM
+          name: 'Sleep for 10s'
+          command: sleep 10s
   wait:
     <<: *dockerImageAndWorkDir
     steps:
