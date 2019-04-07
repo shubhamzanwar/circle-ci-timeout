@@ -38,6 +38,9 @@ jobs:
       - run:
           name: 'List files'
           command: ls
+      - run:
+          name: 'Echo file contents'
+          command: echo $(<approval)
       - save_cache:
           key: approval-file-{{epoch}}
           paths:
@@ -57,6 +60,9 @@ jobs:
       - run:
           name: 'list files'
           command: ls
+      - run:
+          name: 'Echo file contents'
+          command: echo $(<approval)
       - run:
           name: 'Check the file contents'
           command: sh deployments/move.sh
