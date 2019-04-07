@@ -1,5 +1,5 @@
 temp=$(<approval)
-if [[ $temp = "true" ]]
+if [ "$temp" = "true" ]
 then
 	echo approved
 else
