@@ -62,7 +62,7 @@ jobs:
           command: ls
       - run:
           name: 'Echo file contents'
-          command: echo $(<approval)
+          command: cat approval
       - run:
           name: 'Check the file contents'
           command: sh deployments/move.sh

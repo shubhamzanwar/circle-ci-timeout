@@ -1,6 +1,6 @@
 ls
-temp=$(<approval)
-echo $temp
+temp=$(cat approval)
+echo "temp: $temp"
 if [ "$temp" = "true" ]
 then
 	echo approved
