@@ -13,6 +13,9 @@ jobs:
           keys:
             - v1-{{checksum "package-lock.json"}}
       - run:
+          name: 'Set approval to false'
+          command: echo "false" > approval
+      - run:
           name: 'Installing dependencies'
           command: npm install
       - save_cache:
@@ -23,21 +26,35 @@ jobs:
           root: ~/user-ms
           paths:
             - .
-  pass:
+  hold:
     <<: *dockerImageAndWorkDir
+    type: approval
     steps:
+      - attach_workspace:
+          at: ~/user-ms
+      - checkout
       - run:
-          name: 'Sleep for 10s'
-          command: sleep 10s
+          name: 'Save a file with new content'
+          command: echo "true" > approval
+      - persist_to_workspace:
+          root: ~/user-ms
+          paths:
+            - .
   wait:
     <<: *dockerImageAndWorkDir
     steps:
       - run:
-          name: 'Sleep for 20s'
-          command: sleep 20s
+          name: 'Sleep for 1m'
+          command: sleep 1m
+      - attach_workspace:
+          at: ~/user-ms
+      - checkout
+      - run:
+          name: 'Check the file contents'
+          command: sh deployments/move.sh
+      
   test-and-lint:
     <<: *dockerImageAndWorkDir
-    parallelism: 3
     steps:
       - attach_workspace:
           at: ~/user-ms
@@ -59,10 +76,10 @@ workflows:
       - wait:
           requires: 
               - install-dependencies
-      - pass:
+      - hold:
           requires: 
               - install-dependencies
       - test-and-lint:
           requires:
               - wait
-              - pass
+              - hold
