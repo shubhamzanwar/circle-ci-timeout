@@ -23,6 +23,12 @@ jobs:
           root: ~/user-ms
           paths:
             - .
+  wait:
+    <<: *dockerImageAndWorkDir
+    steps:
+      - run:
+          name: 'Sleep for 20s'
+          command: sleep 20s
   test-and-lint:
     <<: *dockerImageAndWorkDir
     parallelism: 3
@@ -44,6 +50,9 @@ workflows:
   test-and-lint:
     jobs:
       - install-dependencies
+      - wait:
+          requires: 
+              - install-dependencies
       - test-and-lint:
           requires:
-              - install-dependencies
+              - wait
