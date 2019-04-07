@@ -36,7 +36,7 @@ jobs:
           name: 'Running unit testcases'
           command: npm run test
       - run:
-          name: 'Running lint',
+          name: 'Running lint'
           command: 'npm run lint'
 workflows:
   version: 2
