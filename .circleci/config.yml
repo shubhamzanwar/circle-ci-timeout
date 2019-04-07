@@ -51,6 +51,10 @@ jobs:
       - restore_cache:
           keys:
               - approval-file
+
+      - run:
+          name: 'list files'
+          command: ls
       - run:
           name: 'Check the file contents'
           command: sh deployments/move.sh
