@@ -39,12 +39,21 @@ jobs:
           root: ~/user-ms
           paths:
             - .
+  trial:
+      <<: *dockerImageAndWorkDir
+      steps:
+      - attach_workspace:
+          at: ~/user-ms
+      - checkout
+      - run:
+          name: 'display file contents'
+          command: cat approval
   wait:
     <<: *dockerImageAndWorkDir
     steps:
       - run:
-          name: 'Sleep for 1m'
-          command: sleep 1m
+          name: 'Sleep for 30s'
+          command: sleep 30s
       - attach_workspace:
           at: ~/user-ms
       - checkout
@@ -82,6 +91,9 @@ workflows:
       - approve:
           requires:
               - hold
+      - trial:
+          requires:
+              - approve
       - test-and-lint:
           requires:
               - wait
