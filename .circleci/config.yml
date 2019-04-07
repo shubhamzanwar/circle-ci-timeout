@@ -39,15 +39,6 @@ jobs:
           key: approval-file
           paths:
               - ~/user-ms/approval
-  trial:
-      <<: *dockerImageAndWorkDir
-      steps:
-      - attach_workspace:
-          at: ~/user-ms
-      - checkout
-      - run:
-          name: 'display file contents'
-          command: cat approval
   wait:
     <<: *dockerImageAndWorkDir
     steps:
@@ -94,9 +85,6 @@ workflows:
       - approve:
           requires:
               - hold
-      - trial:
-          requires:
-              - approve
       - test-and-lint:
           requires:
               - wait
