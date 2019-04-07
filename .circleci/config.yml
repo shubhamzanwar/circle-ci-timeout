@@ -35,10 +35,13 @@ jobs:
       - run:
           name: 'Save a file with new content'
           command: echo "true" > approval
+      - run:
+          name: 'List files'
+          command: ls
       - save_cache:
           key: approval-file-{{epoch}}
           paths:
-              - ~/user-ms/approval
+              - ./approval
   wait:
     <<: *dockerImageAndWorkDir
     steps:
