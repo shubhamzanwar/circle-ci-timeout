@@ -25,6 +25,7 @@ jobs:
             - .
   test-and-lint:
     <<: *dockerImageAndWorkDir
+    parallelism: 3
     steps:
       - attach_workspace:
           at: ~/user-ms
