@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/shubhamzanwar/circle-ci-timeout#readme",
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "jest": "^24.7.1"
   }
 }
