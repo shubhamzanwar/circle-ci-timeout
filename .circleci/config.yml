@@ -66,7 +66,13 @@ jobs:
       - run:
           name: 'Check the file contents'
           command: sh deployments/move.sh
-      
+      - run:
+          name: 'Restore cache file contents'
+          command: echo "false" > approval
+      - save_cache:
+          key: approval-file-{{epoch}}
+          paths:
+              - ./approval      
   test-and-lint:
     <<: *dockerImageAndWorkDir
     steps:

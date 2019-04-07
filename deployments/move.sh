@@ -1,4 +1,6 @@
+ls
 temp=$(<approval)
+echo $temp
 if [ "$temp" = "true" ]
 then
 	echo approved
